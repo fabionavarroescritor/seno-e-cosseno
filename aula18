@@ -1,0 +1,60 @@
+//variável de frequência
+float freq; 
+//booleana de gravação
+boolean salva = false; 
+
+void setup() {
+
+  background(230);
+  size(920, 700); 
+  smooth(10);
+}
+
+void draw() {
+
+  //variável de frequência
+  freq += 0.04;
+
+  //variável de cor
+  float[] cor = {0.55, 0.23, 0.77, 1.25, 0.44, 0.56};
+
+  //variável de amplitude
+  float[] amps = {370, 320, 90, 360, 10, 10};
+
+  //cores
+  fill(127+sin(freq*cor[0])*127, 
+    127+sin(freq*cor[1])*127, 
+    127+sin(freq*cor[2])*127);
+
+  //ellipse1
+  noStroke();
+  ellipse(width/2+cos(freq+180)*amps[0], height/2+sin(freq+90)*amps[1], 60, 60);
+  
+//ellipse2
+  noStroke();
+  ellipse(width/2+cos(freq-180)*amps[0], height/2+sin(freq-90)*amps[1], 60, 60);
+
+//ellipse3
+  noStroke();
+  ellipse(width/2+cos(freq-270.20)*amps[2], height/2+sin(freq)*amps[3], 60, 60);
+
+//código do núcleo
+  push();
+    fill(127+sin(freq*cor[3])*127, 
+    127+sin(freq*cor[4])*127, 
+    127+sin(freq*cor[5])*127);
+
+  noStroke();
+  ellipse(width/2+cos(freq+90)*amps[4], height/2+sin(freq+90)*amps[5], 40, 40);
+  pop();
+
+  if (salva) {
+    saveFrame("salva/frame####.png");
+  }
+}
+void keyPressed() {
+
+  if (key == 's') {
+    salva = !salva;
+  }
+}
